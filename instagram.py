@@ -3,7 +3,7 @@ from config import INSTAGRAM_ACCESS_TOKEN, INSTAGRAM_ACCOUNT_ID
 
 
 def check_instagram_connection():
-    url = f"https://graph.facebook.com/v21.0/{INSTAGRAM_ACCOUNT_ID}"
+    url = f"https://graph.facebook.com/v23.0/{INSTAGRAM_ACCOUNT_ID}"
 
     params = {
         "fields": "username",
@@ -12,4 +12,7 @@ def check_instagram_connection():
 
     response = requests.get(url, params=params)
 
-    return response.json()
+    return {
+        "status_code": response.status_code,
+        "data": response.json()
+    }
